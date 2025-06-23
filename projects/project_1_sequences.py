@@ -1,7 +1,9 @@
-from math import pi, sin, cos
+from math import cos, pi, sin
+
 
 class Polygon:
     """A class representing a regular polygon with a specified number of edges and radius."""
+
     def __init__(self, edges: int, radius: int):
         if not isinstance(edges, int):
             raise TypeError("edges must be an int")
@@ -26,18 +28,24 @@ class Polygon:
 
     def __eq__(self, other):
         if not isinstance(other, Polygon):
-            raise TypeError("Equality not supported between instances of 'Polygon' and other types")
-        return (self.edges == other.edges and
-                self.radius == other.radius)
+            raise TypeError(
+                "Equality not supported between instances of 'Polygon' and other types"
+            )
+        return self.edges == other.edges and self.radius == other.radius
 
     def __gt__(self, other):
         if not isinstance(other, Polygon):
-            raise(TypeError("Comparison not supported between instances of 'Polygon' and other types"))
+            raise (
+                TypeError(
+                    "Comparison not supported between instances of 'Polygon' and other types"
+                )
+            )
         return self.edges > other.edges
 
 
 class PolygonSequence:
     """A class representing a sequence of polygons with edges ranging from 3 to a specified maximum."""
+
     def __init__(self, max_edges: int, radius: int):
         if not isinstance(max_edges, int) or not isinstance(radius, int):
             raise TypeError("max_edges and radius must be integers")
@@ -46,7 +54,9 @@ class PolygonSequence:
         self.max_edges = max_edges
         self.radius = radius
         self.polygons = [Polygon(edges, radius) for edges in range(3, max_edges + 1)]
-        self.max_efficiency_polygon = max(self.polygons, key=lambda p: p.area/p.perimeter)
+        self.max_efficiency_polygon = max(
+            self.polygons, key=lambda p: p.area / p.perimeter
+        )
 
     def __repr__(self):
         return f"PolygonSequence(max_edges={self.max_edges}, radius={self.radius})"
