@@ -56,11 +56,9 @@ def test_polygon_with_other_types():
     with pytest.raises(TypeError):
         assert polygon > 2
     with pytest.raises(TypeError):
-        assert polygon < "string"
+        assert polygon > "string"
     with pytest.raises(TypeError):
         assert polygon == [1, 2, 3]
-    with pytest.raises(TypeError):
-        assert polygon is not None
 
 
 def test_polygon_sequence_initialization(polygon_sequence_1):
@@ -73,6 +71,16 @@ def test_polygon_sequence_initialization(polygon_sequence_1):
     assert (
         polygon_sequence_1.max_efficiency_polygon == polygon_sequence_1[7]
     )  # Polygon with 10 edges should have the highest area/perimeter ratio
+
+
+def test_polygon_sequence_slicing(polygon_sequence_1):
+    """Test slicing of PolygonSequence."""
+    assert polygon_sequence_1[0].edges == 3
+    assert polygon_sequence_1[1].edges == 4
+    assert polygon_sequence_1[-1].edges == 10
+    assert (
+        polygon_sequence_1[:3][2].edges == 5
+    )  # Slicing should return the correct polygons
 
 
 def test_polygon_sequence_init_error():

@@ -35,10 +35,8 @@ class Polygon:
 
     def __gt__(self, other):
         if not isinstance(other, Polygon):
-            raise (
-                TypeError(
-                    "Comparison not supported between instances of 'Polygon' and other types"
-                )
+            raise TypeError(
+                "Comparison not supported between instances of 'Polygon' and other types"
             )
         return self.edges > other.edges
 
