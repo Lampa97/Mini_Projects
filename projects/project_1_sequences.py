@@ -11,9 +11,9 @@ class Polygon:
             raise TypeError("radius must be an int")
         if edges < 3:
             raise ValueError("A polygon must have at least 3 edges")
-        self.edges = edges
+        self._edges = edges
         self.vertices = edges
-        self.radius = radius
+        self._radius = radius
         self.interior_angle = (edges - 2) * 180 / edges
         self.edge_length = 2 * radius * sin(pi / edges)
         self.apothem = radius * cos(pi / edges)
@@ -21,24 +21,24 @@ class Polygon:
         self.perimeter = self.edge_length * edges
 
     def __repr__(self):
-        return f"Polygon(edges={self.edges}, radius={self.radius})"
+        return f"Polygon(edges={self._edges}, radius={self._radius})"
 
     def __str__(self):
-        return f"Polygon with {self.edges} edges and radius {self.radius}"
+        return f"Polygon with {self._edges} edges and radius {self._radius}"
 
     def __eq__(self, other):
         if not isinstance(other, Polygon):
             raise TypeError(
                 "Equality not supported between instances of 'Polygon' and other types"
             )
-        return self.edges == other.edges and self.radius == other.radius
+        return self._edges == other._edges and self._radius == other._radius
 
     def __gt__(self, other):
         if not isinstance(other, Polygon):
             raise TypeError(
                 "Comparison not supported between instances of 'Polygon' and other types"
             )
-        return self.edges > other.edges
+        return self._edges > other._edges
 
 
 class PolygonSequence:
