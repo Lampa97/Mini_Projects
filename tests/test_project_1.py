@@ -5,8 +5,8 @@ from projects.project_1_sequences import Polygon, PolygonSequence
 
 def test_polygon_initialization(polygon_1):
     """Test the initialization of a Polygon."""
-    assert polygon_1.edges == 3
-    assert polygon_1.radius == 2
+    assert polygon_1._edges == 3
+    assert polygon_1._radius == 2
     assert polygon_1.interior_angle == 60.0
     assert polygon_1.edge_length == pytest.approx(3.46, abs=0.01)
     assert polygon_1.apothem == pytest.approx(1.0, abs=0.01)
@@ -66,8 +66,8 @@ def test_polygon_sequence_initialization(polygon_sequence_1):
     assert polygon_sequence_1.max_edges == 10
     assert polygon_sequence_1.radius == 5
     assert len(polygon_sequence_1) == 8  # Polygons with edges from 3 to 10
-    assert polygon_sequence_1[0].edges == 3
-    assert polygon_sequence_1[7].edges == 10
+    assert polygon_sequence_1[0]._edges == 3
+    assert polygon_sequence_1[7]._edges == 10
     assert (
         polygon_sequence_1.max_efficiency_polygon == polygon_sequence_1[7]
     )  # Polygon with 10 edges should have the highest area/perimeter ratio
@@ -75,11 +75,11 @@ def test_polygon_sequence_initialization(polygon_sequence_1):
 
 def test_polygon_sequence_slicing(polygon_sequence_1):
     """Test slicing of PolygonSequence."""
-    assert polygon_sequence_1[0].edges == 3
-    assert polygon_sequence_1[1].edges == 4
-    assert polygon_sequence_1[-1].edges == 10
+    assert polygon_sequence_1[0]._edges == 3
+    assert polygon_sequence_1[1]._edges == 4
+    assert polygon_sequence_1[-1]._edges == 10
     assert (
-        polygon_sequence_1[:3][2].edges == 5
+        polygon_sequence_1[:3][2]._edges == 5
     )  # Slicing should return the correct polygons
 
 
