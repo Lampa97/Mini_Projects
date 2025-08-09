@@ -4,7 +4,7 @@ import math
 class Polygon:
     def __init__(self, n, R):
         if n < 3:
-            raise ValueError('Polygon must have at least 3 vertices.')
+            raise ValueError("Polygon must have at least 3 vertices.")
         self._n = n
         self._R = R
         self._interior_angle = None
@@ -14,7 +14,7 @@ class Polygon:
         self._perimeter = None
 
     def __repr__(self):
-        return f'Polygon(n={self._n}, R={self._R})'
+        return f"Polygon(n={self._n}, R={self._R})"
 
     @property
     def edges(self):
@@ -31,7 +31,7 @@ class Polygon:
     @edges.setter
     def edges(self, value):
         if value < 3:
-            raise ValueError('Polygon must have at least 3 edges.')
+            raise ValueError("Polygon must have at least 3 edges.")
         self._n = value
         self._interior_angle = None
         self._side_length = None
@@ -46,7 +46,7 @@ class Polygon:
     @circumradius.setter
     def circumradius(self, value):
         if value <= 0:
-            raise ValueError('Circumradius must be a positive number.')
+            raise ValueError("Circumradius must be a positive number.")
         self._R = value
         self._side_length = None
         self._apothem = None
@@ -85,8 +85,10 @@ class Polygon:
 
     def __eq__(self, other):
         if isinstance(other, self.__class__):
-            return (self.count_edges == other.count_edges
-                    and self.circumradius == other.circumradius)
+            return (
+                self.count_edges == other.count_edges
+                and self.circumradius == other.circumradius
+            )
         else:
             return NotImplemented
 
@@ -96,10 +98,11 @@ class Polygon:
         else:
             return NotImplemented
 
+
 class PolygonIterator:
     def __init__(self, m, R):
         if m < 3:
-            raise ValueError('m must be greater than 3')
+            raise ValueError("m must be greater than 3")
         self._m = m
         self._R = R
         self._index = 3
@@ -115,10 +118,11 @@ class PolygonIterator:
         else:
             raise StopIteration
 
+
 class Polygons:
     def __init__(self, m, R):
         if m < 3:
-            raise ValueError('m must be greater than 3')
+            raise ValueError("m must be greater than 3")
         self._m = m
         self._R = R
 
@@ -126,15 +130,16 @@ class Polygons:
         return self._m - 2
 
     def __repr__(self):
-        return f'Polygons(m={self._m}, R={self._R})'
+        return f"Polygons(m={self._m}, R={self._R})"
 
     def __iter__(self):
         return PolygonIterator(self._m, self._R)
 
     @property
     def max_efficiency_polygon(self):
-        sorted_polygons = sorted(PolygonIterator(self._m, self._R),
-                                 key=lambda p: p.area / p.perimeter,
-                                 reverse=True)
+        sorted_polygons = sorted(
+            PolygonIterator(self._m, self._R),
+            key=lambda p: p.area / p.perimeter,
+            reverse=True,
+        )
         return sorted_polygons[0]
-

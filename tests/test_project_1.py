@@ -1,6 +1,6 @@
 import pytest
 
-from projects.project_1_sequences import Polygon, PolygonSequence
+from projects.project_1.project_1_sequences import Polygon, PolygonSequence
 
 
 def test_polygon_initialization(polygon_1):
