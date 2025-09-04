@@ -62,3 +62,5 @@ with csv_context_manager('cars.csv') as reader:
         row = next(reader)
         print(row)
  # Just print the first row as a sample
+
+print("hello" 'world' *2)
