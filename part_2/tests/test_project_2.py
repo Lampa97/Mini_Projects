@@ -1,7 +1,6 @@
 import math
 
-from projects.project_2.project_2_iterators import (Polygon, PolygonIterator,
-                                                    Polygons)
+from projects.project_2.project_2_iterators import Polygon, PolygonIterator, Polygons
 
 
 def test_polygon():
